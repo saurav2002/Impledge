@@ -9,11 +9,11 @@ vector: A dynamic array that can resize itself.
 
 Function: int isConcatenate(string word, unordered_set<string>& st, unordered_map<string,bool>& mp)
 This recursive function checks whether a given word can be formed by concatenating other words in the provided set.
-1.The function first checks if the current word is already in the memoization map mp. If it is, the function returns the stored result.
-2.If the word is not in mp, the function iterates through the word, splitting it into a prefix and a suffix.
-3.It then recursively checks if the prefix is in the set st and if the suffix is a concatenate word (by calling the function recursively).
-4.If a valid concatenation is found, the function updates mp[word] to true and returns true.
-5.If no valid concatenation is found, the function updates mp[word] to false and returns false
+The function first checks if the current word is already in the memoization map mp. If it is, the function returns the stored result.
+If the word is not in mp, the function iterates through the word, splitting it into a prefix and a suffix.
+It then recursively checks if the prefix is in the set st and if the suffix is a concatenate word (by calling the function recursively).
+If a valid concatenation is found, the function updates mp[word] to true and returns true.
+If no valid concatenation is found, the function updates mp[word] to false and returns false
 
 int main()
 The program starts by initializing variables, including an input file stream, sets, maps, and vectors to store words.
