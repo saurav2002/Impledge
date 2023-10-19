@@ -1,4 +1,4 @@
-The C++ code is designed to find the longest and second longest compound words from a given input file
+This C++ code is designed to find the longest and second longest compound words from a given input file
 
 Libraries  
 iostream: Input/output stream handling.   
