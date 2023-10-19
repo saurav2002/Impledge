@@ -1,0 +1,71 @@
+#include<iostream>
+#include<fstream>
+#include<unordered_set>
+#include<unordered_map>
+#include<vector>
+#include <chrono>
+using namespace std;
+
+
+int isConcatenate(string word,unordered_set<string>&st,unordered_map<string,bool>&mp){
+    if(mp.find(word)!=mp.end() ){
+        if(mp[word]){ 
+            return true;
+        }
+        return false;
+    }
+    int l=word.length();
+    for(int i=0;i<l;i++){
+        string pre=word.substr(0,i+1);
+        string suf=word.substr(i+1);
+
+        if((st.find(pre)!=st.end() && isConcatenate(suf,st,mp)) ||
+         (st.find(pre)!=st.end() && st.find(suf)!=st.end())){
+             return mp[word]=true;
+         }
+    }
+    return mp[word]=false;
+
+}
+
+
+int main(){
+    auto start = chrono::high_resolution_clock::now(); 
+    vector<string>collection;
+    string word="";
+    unordered_set<string> st;
+    unordered_map<string,bool>mp;
+    ifstream file("Input_01.txt");
+    string max1="",max2="";
+
+    while(file>> word){
+        st.insert(word);
+        collection.push_back(word);
+        
+    }
+
+    for(auto word:collection){
+        if(isConcatenate(word,st,mp)){
+                int len=word.length();
+                if(len>max1.length()){
+                    max2=max1;
+                    max1=word;
+                }
+                else if(len<max1.length()){
+                    if(max2.length()<len){
+                        max2=word;
+                    }
+                }
+                
+            }
+    }
+    auto end = chrono::high_resolution_clock::now();
+    auto duration = chrono::duration_cast<std::chrono::milliseconds>(end - start);
+    cout<<"Longest Compound Word : "<<max1<<endl<<"Second Longest Compound Word : "<<max2<<endl<<"Time taken : "<<duration.count()<<"ms";
+    
+    
+
+
+
+    return 0;
+}
